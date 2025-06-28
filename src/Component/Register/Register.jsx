@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup'
-import { userContext } from '../../Context/userContext';
+import { userContext } from '../../Context/UserContext';
 
 export default function Register() {
  

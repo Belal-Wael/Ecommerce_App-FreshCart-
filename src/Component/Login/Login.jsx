@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { userContext } from '../../Context/userContext';
+import { userContext } from '../../Context/UserContext';
 
 export default function Login() {
  

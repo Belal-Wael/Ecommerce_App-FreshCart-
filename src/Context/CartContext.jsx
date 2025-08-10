@@ -37,6 +37,7 @@ export default function CartContextProvider(Props){
     }
 
     function addToCart(ProductID){
+        console.log('headers ::::',headers);
         return axios.post(`https://ecommerce.routemisr.com/api/v1/cart`,{productId:ProductID},
             {
                 headers:headers // headers only because the same name.
@@ -55,13 +56,15 @@ export default function CartContextProvider(Props){
         .catch((error)=>error)
     }
 
-    async function getCart(){
+    async function getCart(){        
       let response =  await getCartItems();
       setCart(response.data)
     }
 
     useEffect(()=>{
-        getCart();
+        if(localStorage.getItem('userToken')){
+            getCart();
+        }
     }, [])
 
     return <CartContext.Provider value={{cart , setCart,addToCart , getCartItems , removeFromCart,updateCartItem , CheckOut}}>

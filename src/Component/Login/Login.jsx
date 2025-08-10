@@ -23,19 +23,14 @@ export default function Login() {
                   localStorage.setItem('userToken',apiResponse?.data?.token);
                   setUserLogin(apiResponse?.data?.token);
                   navigate('/'); // routing to home using progrmatic routing 
-                  setIsLoading(false)
-                  console.log(apiResponse);
-                  
+                  setIsLoading(false)                  
                 }
               }
               )
               .catch((apiResponse)=>{
                 setApiError(apiResponse?.response?.data?.message);
-                setIsLoading(false)
-                console.log(apiResponse);
-                
+                setIsLoading(false)                
               })
-        
      }
 
 
@@ -48,32 +43,126 @@ export default function Login() {
      })
 
   return <>
-    <div className='py-12 max-w-lg mx-auto'>
-    <form action="" onSubmit={formik.handleSubmit}>
-        <h1 className='text-3xl font-bold mb-6 text-gray-900'>Login  Now</h1>
-
-        {ApiError &&<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-          {ApiError}
-        </div> }
-
-
-        <div className="relative z-0 w-full mb-5 group">
-            <input type="email" name="email" value={formik.values.email} id="email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-900 peer" placeholder=" " onChange={formik.handleChange} onBlur={formik.handleBlur} />
-            <label htmlFor="email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-900 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter Your Email Address :</label>
-        </div>
-      
-       <div className="relative z-0 w-full mb-5 group">
-            <input type="password" name="password" value={formik.values.password} id="password" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-gary-500 focus:outline-none focus:ring-0 focus:border-gray-900 peer" placeholder=" " onChange={formik.handleChange} onBlur={formik.handleBlur} />
-            <label htmlFor="password" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-900 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter Your Password :</label>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        {/* Header */}
+        <div className="text-center">
+          <div className="mx-auto h-16 w-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mb-6">
+            <i className="fas fa-user text-white text-2xl"></i>
+          </div>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              Welcome Back
+            </span>
+          </h1>
+          <p className="text-gray-600">Sign in to your account to continue</p>
         </div>
 
-        <div className='flex items-center py-4'>
-        <button type="submit" className ="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
-           {isLoading?<i className='fas fa-spinner fa-spin'></i>:'Submit'}
-          </button>
-          <p className='pl-3'>did't have an account <span className='font-semibold '><Link to={'/Register'} className='text-gray-900'>Register Now</Link> </span></p>
+        {/* Form */}
+        <div className="bg-white rounded-2xl shadow-xl p-8">
+          <form onSubmit={formik.handleSubmit} className="space-y-6">
+            {ApiError && (
+              <div className="p-4 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg flex items-center" role="alert">
+                <i className="fas fa-exclamation-circle mr-2"></i>
+                {ApiError}
+              </div>
+            )}
+
+            <div className="space-y-4">
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <i className="fas fa-envelope text-gray-400"></i>
+                </div>
+                <input 
+                  type="email" 
+                  name="email" 
+                  value={formik.values.email} 
+                  id="email" 
+                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200" 
+                  placeholder="Enter your email address"
+                  onChange={formik.handleChange} 
+                  onBlur={formik.handleBlur} 
+                />
+              </div>
+              
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <i className="fas fa-lock text-gray-400"></i>
+                </div>
+                <input 
+                  type="password" 
+                  name="password" 
+                  value={formik.values.password} 
+                  id="password" 
+                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200" 
+                  placeholder="Enter your password"
+                  onChange={formik.handleChange} 
+                  onBlur={formik.handleBlur} 
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input 
+                  id="remember-me" 
+                  name="remember-me" 
+                  type="checkbox" 
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                />
+                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+                  Remember me
+                </label>
+              </div>
+              <div className="text-sm">
+                <a href="#" className="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200">
+                  Forgot password?
+                </a>
+              </div>
+            </div>
+
+            <button 
+              type="submit" 
+              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <div className="flex items-center">
+                  <i className="fas fa-spinner fa-spin mr-2"></i>
+                  Signing in...
+                </div>
+              ) : (
+                <div className="flex items-center">
+                  <i className="fas fa-sign-in-alt mr-2"></i>
+                  Sign In
+                </div>
+              )}
+            </button>
+
+            <div className="text-center">
+              <p className="text-sm text-gray-600">
+                Don't have an account?{' '}
+                <Link 
+                  to="/register" 
+                  className="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200"
+                >
+                  Register Now
+                </Link>
+              </p>
+            </div>
+          </form>
         </div>
-     </form>
+
+        {/* Footer */}
+        <div className="text-center">
+          <p className="text-xs text-gray-500">
+            By signing in, you agree to our{' '}
+            <a href="#" className="text-blue-600 hover:text-blue-500">Terms of Service</a>
+            {' '}and{' '}
+            <a href="#" className="text-blue-600 hover:text-blue-500">Privacy Policy</a>
+          </p>
+        </div>
+      </div>
     </div>
   </>
 }

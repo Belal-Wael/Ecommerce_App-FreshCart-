@@ -55,13 +55,13 @@ export default function ProductDetails() {
        <div className="w-full md:w-2/4 pt-8 md:p-6">
            <h1 className='text-lg font-normal text-gray-950'>{productDetails?.title}</h1>
            <p className='text-gray-700 mt-4'>{productDetails?.description}</p>
-           <div className='flex justify-between items-center my-4'>
+           <div className='flex justify-between items-center my-4 text-gray-900'>
                       <span>{productDetails?.price} EGP</span>
                       <span>{productDetails?.ratingsAverage } <i className='fas fa-star text-yellow-400'></i> </span>
                     </div>
-                    <div className="btn my-2">Add To Cart</div>
-       </div>
-     </div>
+                    <div className="my-2 cursor-pointer text-white bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-blue-800">Add To Cart</div>
+          </div>
+        </div>
        <div className="grid  grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 px-4 py-6">
       {
         relatedproduct.map((product) =>
